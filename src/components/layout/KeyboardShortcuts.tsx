@@ -98,44 +98,48 @@ const KeyboardShortcuts: React.FC = () => {
       {/* Keyboard shortcuts modal */}
       <AnimatePresence>
         {showHelp && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ type: 'spring', bounce: 0.3 }}
-            className="fixed left-1/2 bottom-6 transform -translate-x-1/2 z-50 w-72 sm:w-96 bg-dark-bg border border-primary/40 rounded-lg p-4 shadow-lg tech-glow"
+          <div
+            className="fixed inset-0 z-40 flex items-end justify-center sm:items-center"
+            onClick={() => setShowHelp(false)}
           >
-            <div className="flex justify-between items-center mb-3">
-              <h3 className="text-primary text-lg font-mono">Keyboard Shortcuts</h3>
-              <button
-                className="text-light-text/50 hover:text-primary"
-                onClick={() => setShowHelp(false)}
-              >
-                ×
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-y-2 font-mono">
-              {shortcuts.map((shortcut, index) => (
-                <React.Fragment key={index}>
-                  <div className="flex items-center">
-                    <kbd className="bg-glow-effect px-2 py-0.5 text-xs rounded border border-primary/20 text-primary mr-2">
-                      {shortcut.key}
-                    </kbd>
-                  </div>
-                  <div className="text-light-text text-sm">
-                    {shortcut.description}
-                  </div>
-                </React.Fragment>
-              ))}
-            </div>
-            
-            <div className="mt-4 text-center">
-              <p className="text-light-text/60 text-xs">
-                Press <kbd className="bg-glow-effect px-1 py-0.5 rounded text-primary">Esc</kbd> to close
-              </p>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ type: 'spring', bounce: 0.3 }}
+              className="relative w-72 sm:w-96 bg-dark-bg border border-primary/40 rounded-lg p-4 shadow-lg tech-glow z-50"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-primary text-lg font-mono">Keyboard Shortcuts</h3>
+                <button
+                  className="text-light-text/50 hover:text-primary"
+                  onClick={() => setShowHelp(false)}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-y-2 font-mono">
+                {shortcuts.map((shortcut, index) => (
+                  <React.Fragment key={index}>
+                    <div className="flex items-center">
+                      <kbd className="bg-glow-effect px-2 py-0.5 text-xs rounded border border-primary/20 text-primary mr-2">
+                        {shortcut.key}
+                      </kbd>
+                    </div>
+                    <div className="text-light-text text-sm">
+                      {shortcut.description}
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-light-text/60 text-xs">
+                  Press <kbd className="bg-glow-effect px-1 py-0.5 rounded text-primary">Esc</kbd> to close
+                </p>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
