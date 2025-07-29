@@ -1,13 +1,149 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply font-['Poppins'] bg-dark-bg text-light-text m-0 p-0;
+    transition: all 0.3s ease;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .container-section {
+    @apply max-w-[1200px] mx-auto px-4 py-16;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-2 bg-transparent border border-primary text-primary hover:bg-primary hover:text-dark-bg transition-all duration-300 rounded-md font-medium;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-10 text-center relative;
+  }
+  
+  .section-title::after {
+    @apply content-[''] absolute w-16 h-1 bg-primary left-1/2 -translate-x-1/2 bottom-[-10px];
+  }
+  
+  .skill-bar {
+    @apply h-4 bg-glow-effect rounded-full overflow-hidden relative;
+  }
+  
+  .skill-progress {
+    @apply h-full absolute left-0 top-0 bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-1000;
+  }
+}
+
+/* Animation delay utilities */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(0, 255, 231, 0.5);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #00FFE7;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* Tech background grid pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 231, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 231, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Floating animation for loading screen binary */
+@keyframes floating {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Matrix code rain animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.matrix-rain {
+  animation: fadeInOut 1.5s infinite;
+}
+
+/* Circuit connection animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.circuit-node {
+  animation: pulse 3s infinite;
+}
+
+/* Tech glow effect */
+.tech-glow {
+  box-shadow: 0 0 10px rgba(0, 255, 231, 0.3);
+}
+
+/* Scanner line effect */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanner-line {
+  animation: scan 3s linear infinite;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 231, 0.5), transparent);
+  height: 100px;
+  width: 100%;
+  position: absolute;
 }
